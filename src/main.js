@@ -4,7 +4,7 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import locale from 'element-ui/lib/locale/lang/en' // lang i18n
+import locale from 'element-ui/lib/locale/lang/zh-CN' // lang i18n
 
 import '@/styles/index.scss' // global css
 
@@ -28,10 +28,16 @@ if (process.env.NODE_ENV === 'production') {
   mockXHR()
 }
 
+import waves from '@/directive/waves' // 水波纹指令
+Vue.directive('waves', waves)
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
+
+// 替换 element-ui Dialog组件
+import DragDialog from '@/components/DragDialog'
+Vue.component('ElDialog', DragDialog)
 
 Vue.config.productionTip = false
 
